@@ -1,0 +1,88 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    /*有这样一个数组：
+
+将其打印为：
+
+第1级：a1 a2 a3 
+第2级：b1 b2 b3 
+第3级：c1 c2 c3 
+*/
+    let arr = ['a1', 'a2', ['b1', 'b2', ['c1', 'c2', 'c3'], 'b3'], 'a3'];
+
+    // let one = '第一级 ',
+    //   two = '第二级 ',
+    //   three = '第三级 ',
+    //   a = ' ';
+    // for (let i = 0; i < arr.length; i++) {
+    //   let it = arr[i];
+    //   if (typeof it == 'string') {
+    //     if (i == arr.length - 1) {
+    //       a = '';
+    //     };
+    //     one += it + a;
+    //   } else {
+    //     for (let j = 0; j < it.length; j++) {
+    //       let arrb = it[j];
+    //       if (typeof arrb == "string") {
+    //         if (j == it.length - 1) {
+    //           a = '';
+    //         };
+    //         two += arrb + a;
+    //       } else {
+    //         for (let k = 0; k < arrb.length; k++){
+    //             let arrc = arrb[k];
+    //             if (k == arrb.length -1){
+    //               a = '';
+    //             }
+    //             three += arrc + a;
+    //         };
+    //       }
+    //     };
+    //   };
+    // };
+    // console.log(one);
+    // console.log(two);
+    // console.log(three);
+
+    let one = '第一级 ',
+      two = '第二级 ',
+      three = '第三级 ',
+      a = ' ';
+
+    for(let i = 0; i < arr.length; i++){
+      let it = arr[i];
+      if (typeof it == 'string'){
+        if(i == arr.length - 1){
+          a = '';
+        }
+        one += it + a;
+      } else {
+        
+        for(let j = 0; j < it.length; j++){
+          let it1 = it[j];
+          if(typeof it1 == 'string'){
+            if(j == it.length){
+              a = '';
+            }
+            two += it1 + a;
+          } else {
+
+            for(let k = 0; k < it1.length; k++){
+              let it2 = it1[k];
+              if(k == it1.length - 1){
+                a = '';
+              }
+              three += it2 + a;
+            };
+          }
+        };
+      }
+    };
+    console.log(one);
+    console.log(two);
+    console.log(three);
+  })();
+</script>

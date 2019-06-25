@@ -1,0 +1,25 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    // 将以下数组中的字符串用,连接起来，打印出王花花, 李拴蛋, 赵可爽
+    let List = [
+      '王花花',
+      '李拴蛋',
+      '赵可爽',
+    ];
+
+    let string = '',
+      a = ',';
+
+    for (let i = 0; i < List.length; i++) {
+      let it = List[i];
+      if (i === List.length - 1)
+        a = '';
+
+      string += it + a;
+    };
+    console.log(string);
+
+  })();
+</script>

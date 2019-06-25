@@ -1,0 +1,22 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+
+    //分别打印下列数组中的每一项，只打印"李拴蛋"以前的同学
+    let List = [
+      '王花花',
+      '刘备备',
+      '李拴蛋',
+      '赵可爽',
+    ];
+
+    for (let i = 0; i < List.length; i++) {
+      let it = List[i];
+      if (it === '李拴蛋')
+        break;
+
+      console.log(it);
+    }
+  })()
+</script>
