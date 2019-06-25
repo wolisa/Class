@@ -1,0 +1,83 @@
+<script>
+  ;(function () {
+    'use strict'
+    let arr = [
+      1,
+      2,
+      666,
+    ];
+    console.log(arr[2]);
+
+    let arr0 = [
+      1,
+      2,
+      [666],
+    ];
+    console.log(arr0[2][0]);
+
+    let arr1 = [
+      [
+        [1, 5],
+        ['whh', 666],
+      ],
+    ];
+    console.log(arr1[0][1][1]);
+
+    let arr2 = [
+      [
+        [100, 'Emmm'],
+        [
+          2, 'yo', [666],
+        ],
+      ],
+    ];
+    console.log(arr2[0][1][2][0]);
+
+
+    let obj = {
+      a: 1,
+      b: 2,
+      c: 666,
+    };
+    console.log(obj.c)
+
+    let obj0 = {
+      a: 1,
+      b: {
+        yo: {
+          em: '6',
+          ha: 666,
+        },
+      },
+    };
+    console.log(obj0.b.yo.ha);
+
+    let obj1 = {
+      a: 1,
+      b: {
+        yo: [
+          2,
+          'La',
+          {
+            muhaha: '~',
+            a: 666,
+          }
+        ],
+      },
+    };
+    console.log(obj1.b.yo[2].a);
+
+
+    let obj2 = {
+      a: 1,
+      b: {
+        x: [
+          2, {
+            ya: [666]
+          },
+        ],
+      },
+    };
+    console.log(obj2.b.x[1].ya[0]);
+  })()
+</script>

@@ -1,0 +1,49 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    //找到下方数据中所有的数组，并分别打印出每个数组的长度
+    let obj = {
+      a: [3, 5],
+      b: ['Yo', 1],
+    };
+    console.log(obj.a.length, obj.b.length);
+
+    //找到下方数据中所有的数组，并打印出每个数组的长度的和
+    let obj0 = {
+      a: {
+        foo: 2
+      },
+      yo: [3, 5],
+      b: {
+        la: {
+          name: 'Wood',
+          x: [5, 'a', 'c'],
+          muhaha: ['Bob', 'Huahua'],
+          length: 100,
+        },
+      },
+    };
+    let at = obj0.b.la;
+    console.log(obj0.yo.length + at.x.length + at.muhaha.length);
+
+    //找到下方数据中所有的对象，并分别打印出每个对象中的值为字符串的属性
+    let obj1 = {
+      la: 'Ha',
+      v: 2,
+      p: [2, 5],
+      b: {
+        a: {
+          name: 'White',
+          yo: [5, 'a', 'c'],
+          length: 100,
+          map: true,
+        },
+      },
+    };
+    /*let oa = obj1.b.a,
+        oay = obj1.b.a.yo;
+    错了console.log(typeof obj1.la, typeof oa.name, typeof oay[1], typeof oay[2])*/
+    console.log(obj1.la, obj.b.a.name);
+  })()
+</script>
