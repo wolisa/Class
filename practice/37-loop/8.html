@@ -52,31 +52,66 @@
       three = '第三级 ',
       a = ' ';
 
-    for(let i = 0; i < arr.length; i++){
+    // for(let i = 0; i < arr.length; i++){
+    //   let it = arr[i];
+    //   if (typeof it == 'string'){
+    //     if(i == arr.length - 1){
+    //       a = '';
+    //     }
+    //     one += it + a;
+    //   } else {
+
+    //     for(let j = 0; j < it.length; j++){
+    //       let it1 = it[j];
+    //       if(typeof it1 == 'string'){
+    //         if(j == it.length){
+    //           a = '';
+    //         }
+    //         two += it1 + a;
+    //       } else {
+
+    //         for(let k = 0; k < it1.length; k++){
+    //           let it2 = it1[k];
+    //           if(k == it1.length - 1){
+    //             a = '';
+    //           }
+    //           three += it2 + a;
+    //         };
+    //       }
+    //     };
+    //   }
+    // };
+    // console.log(one);
+    // console.log(two);
+    // console.log(three);
+
+    for (let i = 0; i < arr.length; i++) {
       let it = arr[i];
-      if (typeof it == 'string'){
-        if(i == arr.length - 1){
+
+      if (typeof it === "string") {
+        if (i === arr.length - 1)
           a = '';
-        }
         one += it + a;
       } else {
-        
-        for(let j = 0; j < it.length; j++){
+        for (let j = 0; j < it.length; j++) {
           let it1 = it[j];
-          if(typeof it1 == 'string'){
-            if(j == it.length){
+
+          if (typeof it1 === "string") {
+            if (j === it.length - 1)
               a = '';
-            }
+
             two += it1 + a;
           } else {
-
-            for(let k = 0; k < it1.length; k++){
+            for (let k = 0; k < it1.length; k++) {
               let it2 = it1[k];
-              if(k == it1.length - 1){
-                a = '';
+
+              if (typeof it2 === "string") {
+                if (k === it.length - 1)
+                  a = '';
+
+                three += it2 + a;
               }
-              three += it2 + a;
-            };
+            }
           }
         };
       }
@@ -84,5 +119,6 @@
     console.log(one);
     console.log(two);
     console.log(three);
+
   })();
 </script>

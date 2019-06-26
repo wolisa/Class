@@ -1,17 +1,30 @@
 <script>
   ;
   (function () {
-      'use strict'
-      /*有这样一个数组['Yo', 'Em', 1, 'La', 4, 8, 'Ha', 11, 5]
+    'use strict'
+    /*有这样一个数组['Yo', 'Em', 1, 'La', 4, 8, 'Ha', 11, 5]
 
 找到其中所有的数字，并求出它们的和。
 找到其中所有的字符串，并将它们连接起来。
 提示
 
 类型判断可以使用typeof操作符*/
-      let arr = ['Yo', 'Em', 1, 'La', 4, 8, 'Ha', 11, 5];
+    let arr = ['Yo', 'Em', 1, 'La', 4, 8, 'Ha', 11, 5];
 
-    
+    let number = 0,
+      string = '';
+
+    for (let i = 0; i < arr.length; i++) {
+      let it = arr[i];
+
+      if (typeof it === 'number')
+        number += it;
+      else string += it;
+
+    };
+    console.log(number, string);
+
+
 
   })();
 </script>

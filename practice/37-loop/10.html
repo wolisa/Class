@@ -1,0 +1,36 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+
+    let arr = [{
+        name: '王花花'
+      },
+      {
+        name: '王拴蛋'
+      },
+      {
+        name: '牛备备'
+      },
+    ];
+
+      // let a = [];
+      // for(let i = 0; i < arr.length; i++){
+      //   let it = arr[i];
+
+      //   if(it.name.startsWith('王'))
+      //     a.push(it.name);
+      // };
+      // console.log(a)
+
+      let a = [];
+      for(let i = 0; i < arr.length; i++){
+        let it = arr[i];
+        if (!it.name.startsWith('王'))
+          continue;
+
+        a.push(it.name);
+      }
+      console.log(a)
+  })();
+</script>
