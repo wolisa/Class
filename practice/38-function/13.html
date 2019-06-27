@@ -12,13 +12,17 @@
     // 应该得到
     // [0, 2, 4, 6, 8]
 
-    function evenMaker(endNum) {
+    function evenMaker(max) {
       let result = [];
-      for (let i = 0; i < endNum; i++) {
-        if (i * 2 <= endNum)
-          result.push(i * 2);
+      for (let i = 0; i < max; i++) {
+        if (i * 2 > max)
+          break;
+
+        result.push(i * 2);
       };
-      console.log(result);
+      return console.log(result);
     }
+
+
   })();
 </script>

@@ -13,13 +13,16 @@
     // 4
 
     function sumEven(arr) {
-      let total = 0;
+      let result = 0;
       for (let i = 0; i < arr.length; i++) {
         let it = arr[i];
-        if (!(it % 2))
-          total += it;
+        if (it % 2)
+          continue;
+
+        result += it;
       };
-      console.log(total)
-    };
+      return console.log(result)
+    }
+
   })();
 </script>

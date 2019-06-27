@@ -16,10 +16,15 @@
       let result = [];
       for (let i = 0; i < arr.length; i++) {
         let it = arr[i];
-        if (it % 2)
-          result.push(it);
+        if (!(it % 2))
+          continue;
+
+        result.push(it);
       };
-      console.log(result);
+      return console.log(result);
     }
+
+
+
   })();
 </script>
