@@ -1,0 +1,25 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    //造一个函数sumEven，求数组中偶数元素的和
+
+    sumEven([1, 2, 3, 4]);
+    // 应该得到
+    // 6
+
+    sumEven([2, 5, 2]);
+    // 应该得到
+    // 4
+
+    function sumEven(arr) {
+      let total = 0;
+      for (let i = 0; i < arr.length; i++) {
+        let it = arr[i];
+        if (!(it % 2))
+          total += it;
+      };
+      console.log(total)
+    };
+  })();
+</script>

@@ -1,0 +1,26 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    //造一个函数glue，将数组内所有的元素连接起来
+
+    let list = [
+      '王花花',
+      '李拴蛋',
+      '赵可爽',
+    ];
+
+    glue(list);
+    // 应该得到
+    // 王花花李拴蛋赵可爽
+
+    function glue(arr) {
+      let result = '';
+      for (let i = 0; i < arr.length; i++) {
+        let it = arr[i];
+        result += it;
+      };
+      return console.log(result)
+    }
+  })();
+</script>

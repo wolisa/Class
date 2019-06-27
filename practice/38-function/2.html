@@ -1,0 +1,33 @@
+<script>
+  ;
+  (function () {
+    'ues strict'
+    let list = [
+      '王花花',
+      '刘备备',
+      '李拴蛋',
+      '赵可爽',
+    ];
+
+    printer(list, '李拴蛋');
+    // 应该得到：
+    // 王花花
+    // 刘备备
+
+    printer(list, '赵可爽');
+    // 应该得到：
+    // 王花花
+    // 刘备备
+    // 李拴蛋
+
+    function printer(arr, breaker) {
+      for(let i = 0; i < arr.length; i++){
+        let it = arr[i];
+        if (it === breaker)
+          break;
+
+        console.log(it);
+      }
+    }
+  })();
+</script>

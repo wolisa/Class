@@ -1,0 +1,24 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    //造一个函数sum，可以将传入的数组求和
+
+    sum([1, 2]);
+    // 应该得到
+    // 3
+
+    sum([1, 2, 3]);
+    // 应该得到
+    // 6
+
+    function sum(arr) {
+      let total = 0;
+      for (let i = 0; i < arr.length; i++) {
+        let it = arr[i];
+        total += it;
+      };
+      return console.log(total)
+    }
+  })();
+</script>

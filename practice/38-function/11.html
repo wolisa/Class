@@ -1,0 +1,23 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    //造一个函数yoMaker，生成新数组，可以指定需要生成多少个元素
+
+    yoMaker(2);
+    // 应该得到
+    // ['yo', 'yo']
+
+    yoMaker(3);
+    // 应该得到
+    // ['yo', 'yo', 'yo']
+
+    function yoMaker(total) {
+      let arr = [];
+      for (let i = 0; i < total; i++) {
+        arr.push('yo');
+      };
+      console.log(arr);
+    }
+  })();
+</script>

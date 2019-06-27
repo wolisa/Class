@@ -1,0 +1,25 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    //造一个函数filterGlue，可以传入数组，且只连接内部所有的字符串元素
+
+    filterGlue([1, 2, 'Yo', 'ha']);
+    // 应该得到
+    // Yoha
+
+    filterGlue([1, 'a', 2, 'b']);
+    // 应该得到
+    // ab
+
+    function filterGlue(arr) {
+      let result = '';
+      for (let i = 0; i < arr.length; i++) {
+        let it = arr[i];
+        if (typeof it === 'string')
+          result += it;
+      };
+      console.log(result)
+    };
+  })();
+</script>

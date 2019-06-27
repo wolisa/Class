@@ -1,0 +1,23 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    printer(['a', 'b', 'c']);
+    // 应该得到：
+    // a
+    // b
+    // c
+
+    printer([1, 'z', 3]);
+    // 应该得到：
+    // 1
+    // z
+    // 3
+
+    function printer(arr){
+      for (let i = 0; i < arr.length; i++){
+        console.log(arr[i]);
+      };
+    }
+  })();
+</script>

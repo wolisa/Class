@@ -1,0 +1,23 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    //造一个函数arrayMaker，生成新数组，数组中的元素是递增的，步长为1
+
+    arrayMaker(2);
+    // 应该得到
+    // [1, 2]
+
+    arrayMaker(3);
+    // 应该得到
+    // [1, 2, 3]
+
+    function arrayMaker(total) {
+      let result = [];
+      for (let i = 0; i < total; i++) {
+        result.push(i + 1);
+      };
+      console.log(result);
+    }
+  })();
+</script>

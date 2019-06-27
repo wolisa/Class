@@ -1,0 +1,25 @@
+<script>
+  ;
+  (function () {
+    'use strict'
+    //造一个函数filterSum，可以将传入数组，且只求和内部所有的数字元素
+
+    filterSum([1, 2, 'Yo']);
+    // 应该得到
+    // 3
+
+    filterSum([1, 'a', 2, 3]);
+    // 应该得到
+    // 6
+
+    function filterSum(arr) {
+      let total = 0;
+      for (let i = 0; i < arr.length; i++) {
+        let it = arr[i];
+        if (typeof it === 'number')
+          total += it;
+      };
+      console.log(total)
+    }
+  })();
+</script>
