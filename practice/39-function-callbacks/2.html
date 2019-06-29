@@ -1,0 +1,71 @@
+<script>
+  ;
+  (function () {
+    'ues strict'
+
+    //造一个基础函数eachStr()，可以传入字符串组成的数组和一个回调函数
+
+
+    // eachStr(['a', 'b', 'yo'], function () {
+    /* ... */
+    //});
+    // 基于此函数造出：
+    let result;
+    getYo(['a', 'yo', 'yoo']) // ['yo', 'yoo']
+    shortStr(['a', 'foo', 'b', 'bar']) // ['a', 'b']
+    join(['Y', 'o', 'o']) // Yoo
+    search(['背背山', '六六坡', '背背路'], '背背') // ['背背山', '背背路']
+    exclude(['背背山', '六六坡', '背背路'], '背背') // ['六六坡']
+
+      function exclude(arr,keyword){
+        result = [];
+        eachStr(arr, it=>{
+          if(it.includes(keyword))
+          return;
+
+          result.push(it);
+        });
+        console.log(result);
+      }
+
+    function search(arr,keyword){
+      result = [];
+      eachStr(arr, it=>{
+        if(it.includes(keyword))
+        result.push(it);
+      });
+      console.log(result)
+    }
+      function join(arr){
+        result = '';
+        eachStr(arr, it=>{
+          result += it;
+        });
+        console.log(result);
+      }
+
+    function getYo(arr){
+      result =[];
+      eachStr(arr, it=>{
+        if(it.includes('yo'))
+          result.push(it);
+      });
+      console.log(result)
+    }
+
+    function shortStr(arr){
+      result = [];
+      eachStr(arr, it=>{
+        if(it.length === 1)
+        result.push(it);
+      });
+      console.log(result)
+    }
+
+    function eachStr(arr, fn) {
+      for (let i = 0; i < arr.length; i++) {
+        fn(arr[i]);
+      }
+    }
+  })();
+</script>
