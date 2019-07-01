@@ -1,0 +1,47 @@
+<!DOCTYPE html5>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文字+边框闪烁</title>
+
+  <style>
+    .board {
+      background: black;
+      color: red;
+      padding: 10px;
+      display: inline-block;
+      border: 3px solid red;
+    }
+
+    .text {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="board">
+    <div class="text">修脚，贴膜</div>
+  </div>
+</body>
+
+<script>
+  const BOARD = document.querySelector('.board');
+  const TEXT = BOARD.querySelector('.text');
+  setInterval(function () {
+    let visible = getComputedStyle(TEXT).opacity === '1';
+
+    if (visible) {
+      BOARD.style.border = 0;
+      TEXT.style.opacity = 0;
+    } else {
+      BOARD.style.border = '3px solid red'
+      TEXT.style.opacity = 1;
+    }
+  }, 50);
+</script>
+
+</html>

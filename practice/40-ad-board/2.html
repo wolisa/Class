@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    .board {
+      background: black;
+      display: inline-block;
+      color: red;
+      border: 3px solid green;
+      padding: 10px;
+    }
+
+    .text {
+      padding-right: 3px;
+      opacity: 1;
+    }
+
+    .text2 {
+      font-size: .5rem;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="board">
+    <span class="text">修脚，贴膜
+      <span class="text2"></span>
+
+    </span>
+  </div>
+</body>
+
+<script>
+  const board = document.querySelector('.board');
+  const text = board.querySelector('.text');
+  const text2 = board.querySelector('.text2')
+  let i = 0;
+
+  function flicker () {
+    let visible = getComputedStyle(text).opacity === '1';
+    if (visible) {
+      board.style.border = 0;
+      text.style.opacity = 0;
+      // text2.style.opacity = 0;
+
+    } else {
+      i++;
+      board.style.board = 'inherit';
+      text.style.opacity = 1;
+      // text2.style.opacity = 1;
+    };
+      text2.innerText = i + '人用了都说好';
+  }
+
+  setInterval(flicker, 800)
+</script>
+
+</html>
