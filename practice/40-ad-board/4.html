@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html lang="cn">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>3次闪烁渐变大</title>
+  <title>指定闪烁内容</title>
   <style>
-    :root{
-      font-family: sans-serif;
+    :root {
       font-size: 30px;
+      font-family: sans-serif;
     }
-    .board{
-      display: inline-block;
+
+    .board {
       opacity: 1;
-      padding: 15px;
-      color: red;
-      border: 5px solid red;
+      display: inline-block;
       background: #000;
+      color: red;
+      border: 8px solid red;
+      padding: 20px;
     }
   </style>
 </head>
+
 <body>
   <div class="board">
-    <div class="inner">修脚  贴膜</div>
+    <div class="inner"></div>
   </div>
 </body>
 <script>
   const BOARD = document.querySelector('.board');
   const INNER = BOARD.querySelector('.inner');
-  let size = 1;
 
-  setInterval(()=>{
+  let arr = ['洗浴', '按摩', '菠菜面', '保健用品', '老表跑路了'];
+  let count = 0;
+  INNER.innerText = arr[count];
+  setInterval(() => {
     let visible = getComputedStyle(INNER).opacity == 1;
-    if(visible){
+
+    if (visible) {
       BOARD.style.borderColor = 'transparent';
       INNER.style.opacity = 0;
     } else {
       BOARD.style.borderColor = 'inherit';
       INNER.style.opacity = 1;
-      size >= 3 ? size = 1 : size++;
-      INNER.style.fontSize = size + 'rem';
+
+      count++;
+      if(count >= arr.length)
+        count = 0;
+
+      INNER.innerText = arr[count];
     }
   },300)
 </script>
+
 </html>
