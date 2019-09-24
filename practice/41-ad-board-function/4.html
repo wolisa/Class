@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>动态显示</title>
+  <style>
+    :root {
+      font-family: sans-serif;
+      font-size: 30px;
+    }
+
+    .board {
+      opacity: 1;
+      padding: 10px;
+      display: inline-block;
+      background: #000;
+      border: 3px solid red;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="board">
+    <div class="inner"></div>
+  </div>
+</body>
+<script>
+  const board = document.querySelector('.board');
+  const inner = document.querySelector('.inner');
+
+  let textArr = ['洗浴', '按摩', 'SPA', '大宝剑', '宝剑用品', '老表跑路了'],
+    count = 0;
+
+  init();
+
+  function init() {
+    inner.innerText = textArr[count]
+    startFlash();
+  }
+
+  function startFlash() {
+    setInterval(() => {
+      toggleBorder();
+      toggleText(showText);
+    }, 300);
+  }
+
+  function isVisible() {
+    return getComputedStyle(inner).opacity != 0;
+  }
+
+  function toggleBorder() {
+    board.style.borderColor = isVisible() ? 'transparent' : 'inherit';
+  }
+
+  function toggleText(onShow, onHide) {
+    if (isVisible()) {
+      inner.style.opacity = 0;
+      onHide && onHide();
+    } else {
+      inner.style.opacity = 1;
+      onShow && onShow();
+    }
+  }
+
+  function showText() {
+      count++;
+    if (count >= textArr.length) 
+      count = 0;
+    
+    inner.innerText = textArr[count];
+    
+  }
+</script>
+
+</html>

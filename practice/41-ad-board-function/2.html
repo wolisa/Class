@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>越闪越大</title>
+  <style>
+    :root {
+      font-size: 40px;
+      font-family: sans-serif;
+    }
+
+    .board {
+      display: inline-block;
+      opacity: 1;
+      color: red;
+      border: 8px solid red;
+      background: #000;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="board">
+    <div class="inner">修脚 大宝剑</div>
+  </div>
+</body>
+<script>
+  const board = document.querySelector('.board');
+  const inner = document.querySelector('.inner');
+
+  let count = 1;
+
+  init();
+
+  function init() {
+    startFlash();
+  }
+
+  function startFlash() {
+    setInterval(() => {
+      toggleBorder();
+      toggleText();
+      textSize();
+    }, 666)
+  }
+
+  function isVisible() {
+    return getComputedStyle(inner).opacity != 0;
+  }
+
+  function toggleBorder() {
+    board.style.borderColor = isVisible() ? 'transparent' : 'inherit';
+  }
+
+  function toggleText() {
+    if (isVisible())
+      inner.style.opacity = 0;
+    else {
+      inner.style.opacity = 1;
+
+    }
+  }
+
+  function textSize() {
+    if (isVisible()) {
+      count < 3 ? count++ : count = 1;
+      inner.style.fontSize = count + 'rem';
+    }
+  }
+</script>
+
+</html>
