@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    button {
+      padding: 20px;
+    }
+
+    .dropdown {
+      position: absolute;
+    }
+
+    a {
+      color: #ccc;
+      padding: 10px 15px;
+      display: block;
+      text-decoration: none;
+      background: gray;
+    }
+
+    a:hover {
+      color: #fff;
+      background: rgba(0, 0, 0, .8);
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="toggle">+++</button>
+  <div class="dropdown" hidden>
+    <a href="#">扫一扫</a>
+    <a href="#">加好友</a>
+    <a href="#">搜索</a>
+    <a href="#">帮助</a>
+    <a href="#">关于我们</a>
+  </div>
+</body>
+
+<script>
+  let toggle = document.querySelector('.toggle'),
+    dropdown = document.querySelector('.dropdown');
+
+  toggle.addEventListener('mouseenter', () => {
+    dropdown.hidden = false;
+  });
+
+  dropdown.addEventListener('mouseleave', () => {
+    dropdown.hidden = true;
+  })
+</script>
+
+</html>

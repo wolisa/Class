@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>下拉菜单</title>
+
+  <style>
+    .click {
+      padding: 10px;
+    }
+
+    .dropdown {
+      background: gray;
+      position: absolute;
+    }
+
+    a {
+      padding: 10px 20px;
+      color: #ccc;
+      display: block;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #fff;
+      background: rgba(0, 0, 0, .2);
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="toggle">查看更多</button>
+  <div class="dropdown" hidden>
+    <a href="#">扫一扫</a>
+    <a href="#">加好友</a>
+    <a href="#">搜索</a>
+    <a href="#">帮助</a>
+    <a href="#">关于我们</a>
+  </div>
+</body>
+
+<script>
+  const toggle = document.querySelector('.toggle');
+  const dropdown = document.querySelector('.dropdown');
+
+  toggle.addEventListener('click', () => {
+    dropdown.hidden = !dropdown.hidden;
+
+  })
+</script>
+
+</html>
