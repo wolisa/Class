@@ -1,0 +1,139 @@
+<style>
+  .sa-popup {
+    background: red;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    padding: 10px;
+    position: fixed;
+    border: 4px solid;
+    z-index: 1000;
+  }
+
+  .sa-mask {
+    background: rgba(0, 0, 0, .6);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<button id="trigger">支付</button>
+
+<div id="popup">确定要支付么？</div>
+
+<div>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam debitis, ad dolores dolore assumenda quaerat incidunt,
+  modi alias perspiciatis magni laudantium eligendi ex quibusdam maxime, obcaecati iusto cumque molestias expedita.
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, beatae iure. Nobis nam maxime asperiores laboriosam
+  possimus fuga tempora illum eum veritatis magni, accusantium quos ab nihil similique neque sed?
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti fugit sed repudiandae, porro sit officiis
+  consectetur laudantium tenetur cumque, quidem id debitis sapiente deserunt nesciunt numquam, molestias animi
+  recusandae architecto?
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus?
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, quos doloribus nulla, rerum esse quas corporis in aut
+  neque numquam accusantium laudantium voluptatum laborum velit nam tenetur, dolores et veritatis.
+</div>
+
+<script>
+  let popup, trigger, mask;
+
+  boot('#trigger', '#popup')
+
+  function boot(triggerSelector, popupSelector) {
+    trigger = document.querySelector(triggerSelector);
+    popup = document.querySelector(popupSelector);
+
+    //初始化弹出层
+    initPopup();
+    //初始化遮罩
+    initMask();
+
+    bindOpen();
+    bindOff();
+
+  }
+
+  function initPopup() {
+    popup.hidden = true;
+    popup.classList.add('sa-popup');
+  }
+
+  function initMask() {
+    mask = document.createElement('div');
+    mask.classList.add('sa-mask');
+    mask.hidden = true;
+    document.body.appendChild(mask);
+  }
+
+  function bindOpen() {
+    trigger.addEventListener('click', () => {
+      setVisible(true);
+      positionPopup(-50);
+    });
+  }
+
+  function bindOff() {
+    mask.addEventListener('click', () => {
+      setVisible(false);
+    });
+
+    window.addEventListener('keyup',(e)=>{
+      if(e.code === 'Escape')
+        setVisible(false);
+    })
+  }
+
+  function setVisible(show = false) {
+    mask.hidden = popup.hidden = !show;
+  }
+
+//传入数值调整位置，默认为上下左右居中，负值分别向下、左移动，正值相反。
+  function positionPopup(yOffset = 0, xOffset = 0) {
+    let width = popup.offsetWidth,
+      height = popup.offsetHeight;
+
+    let windowWidth = window.innerWidth,
+    windowHeight = window.innerHeight;
+
+    popup.style.left = windowWidth / 2 - width / 2 + xOffset;
+    popup.style.top = windowHeight /2 - height /2 + yOffset;
+  }
+</script>

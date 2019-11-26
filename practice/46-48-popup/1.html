@@ -1,0 +1,201 @@
+<style>
+  .sa-popup {
+    background: rgba(180, 120, 200, .6);
+    position: fixed;
+    padding: 10px;
+    z-index: 1000;
+    border: 2px solid red;
+  }
+
+  .sa-mask {
+    background: rgba(0, 0, 0, .7);
+    z-index: 999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<button id="trigger">点击注册</button>
+
+<div id="popup">
+  <form>
+    <div>
+      name:
+      <input type="text">
+    </div>
+    <div>
+      mi
+      <input type="text">
+    </div>
+    <div>
+      <button>提交</button>
+    </div>
+  </form>
+</div>
+
+<div>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam debitis, ad dolores dolore assumenda quaerat incidunt,
+  modi alias perspiciatis magni laudantium eligendi ex quibusdam maxime, obcaecati iusto cumque molestias expedita.
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, beatae iure. Nobis nam maxime asperiores laboriosam
+  possimus fuga tempora illum eum veritatis magni, accusantium quos ab nihil similique neque sed?
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti fugit sed repudiandae, porro sit officiis
+  consectetur laudantium tenetur cumque, quidem id debitis sapiente deserunt nesciunt numquam, molestias animi
+  recusandae architecto?
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, mollitia aliquam nihil est
+  reprehenderit, ad
+  molestiae tempore dignissimos nesciunt asperiores rerum error maxime cumque voluptatum, perferendis dicta ratione.
+  Adipisci, natus?
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, quos doloribus nulla, rerum esse quas corporis in aut
+  neque numquam accusantium laudantium voluptatum laborum velit nam tenetur, dolores et veritatis.
+
+
+</div>
+
+<script>
+  let trigger, popup, mask, config;
+//用户依次设置触发选择器、弹出层选择器
+  let selector = {
+    yoTrigger: '#trigger',
+    yoPopup: '#popup',
+  }
+
+  //用户自定义配置，可配置的有：
+  // 位置（position）： center/top/bottom/left/right以及两两组合共9个方位
+  //X和Y轴偏移量（offsetX/Y） 正值为向右、下移动，负值相反
+  //按键隐藏弹出层（keyToHide），默认为ESC键
+  //触发弹出层时间（on），默认为点击事件
+  let custom = {
+    position: 'top',
+  }
+
+//默认配置，会被用户自定义配置覆盖
+  let defaultConfig = {
+    offsetX: 0,
+    offsetY: 0,
+    position: 'center',
+    keyToHide: 'Escape',
+    on: 'click',
+  };
+
+
+
+
+  boot(selector.yoTrigger, selector.yoPopup, custom);
+
+  function boot(triggerSelector, popupSelector, custom) {
+    trigger = document.querySelector(triggerSelector);
+    popup = document.querySelector(popupSelector);
+
+    initPopup();
+    initMask();
+
+    loadConfig(custom)
+
+    bindOpen();
+    bindOff();
+  }
+
+  function loadConfig(custom) {
+    config = Object.assign({}, defaultConfig, custom);
+  }
+
+  function initPopup() {
+    popup.hidden = true;
+    popup.classList.add('sa-popup');
+  }
+
+  function initMask() {
+    mask = document.createElement('div');
+    document.body.appendChild(mask);
+    mask.classList.add('sa-mask');
+    mask.hidden = true;
+  }
+
+  function bindOpen() {
+    trigger.addEventListener(config.on, () => {
+      setVisible(true);
+      repositionPopup(config.position,config.offsetY,config.offsetX);
+    })
+  }
+
+  function bindOff() {
+    mask.addEventListener(config.on, () => {
+      setVisible(false);
+    })
+
+    window.addEventListener('keyup', (e) => {
+      if (e.key === config.keyToHide)
+        setVisible(false);
+    })
+  }
+
+  function setVisible(show = false) {
+    mask.hidden = popup.hidden = !show;
+  }
+
+  function repositionPopup(position, offsetY, offsetX) {
+    let windowWidth = window.innerWidth,
+      windowHeight = window.innerHeight,
+      width = popup.offsetWidth,
+      height = popup.offsetHeight;
+
+    let style = popup.style;
+
+    if (!position.includes('-')) {
+      if (position === 'left' || position === 'right')
+        position += '-centerX';
+      else if (position === 'top' || position === 'bottom')
+        position += '-centerX';
+      else position = 'centerX-centerY';
+    }
+    if (position.includes('centerX'))
+      style.left = windowWidth / 2 - width / 2 + offsetX + 'px';
+    if (position.includes('centerY'))
+      style.top = windowHeight / 2 - height / 2 + offsetY + 'px';
+    if (position.includes('left'))
+      style.left = offsetX + 'px';
+    if (position.includes('right'))
+      style.right = offsetX + 'px';
+    if (position.includes('top'))
+      style.top = offsetY + 'px';
+    if (position.includes('bottom'))
+      style.bottom = offsetY + 'px';
+
+  }
+</script>
