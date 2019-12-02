@@ -1,0 +1,76 @@
+<style>
+  [hidden] {
+    display: none !important;
+  }
+
+  .popout {
+    position: fixed;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  }
+</style>
+<button data-popout="Yo ha ha ...">Yo</button>
+<button data-popout="Ho ha ha ...">Ho</button>
+<button data-popout="1 ha ha ...">1</button>
+<button data-popout="2 ha ha ...">2</button>
+<button data-popout="3 ha ha ...">3</button>
+<button data-popout="4 ha ha ...">4</button>
+
+<script>
+  let triggers = new Set();
+  let lastTrigger;
+  boot();
+
+  function boot() {
+    bindEvent();
+  }
+
+  function bindEvent() {
+    document.addEventListener('click', e => {
+      let el = e.target;
+      let content = el.dataset.popout;
+
+      if (content) {
+        lastTrigger && hide(lastTrigger);
+        lastTrigger = el;
+        triggers.add(el);
+        show(el, content);
+      } else {
+        hideAll();
+      }
+    })
+  }
+
+  function hide(btn) {
+    btn._popout.hidden = true;
+  }
+
+  function hideAll() {
+    triggers.forEach(e => {
+      e._popout.hidden = true;
+    })
+  }
+
+  function show(btn, content) {
+    if (!btn._popout) {
+      let popout = document.createElement('div');
+      popout.classList.add('popout');
+      popout.innerText = content;
+      document.body.appendChild(popout);
+      btn._popout = popout;
+      rePosition(btn);
+    } else {
+      btn._popout.hidden = false;
+    }
+  }
+
+  function rePosition(btn){
+    let p = btn._popout;
+    let btnP = btn.getBoundingClientRect();
+
+    p.style.left = btnP.left + 'px';
+    p.style.top = btnP.top + btn.offsetHeight + 10 + 'px';
+  }
+</script>

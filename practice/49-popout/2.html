@@ -1,0 +1,75 @@
+<style>
+  .popout {
+    padding: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+    position: fixed;
+    background: #fff;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<button data-popout='Yo hahahaha'>Yo</button>
+<button data-popout='Ha hahahaha'>Ha</button>
+<button data-popout='1 hahahaha'>1</button>
+<button data-popout='2 hahahaha'>2</button>
+<button data-popout='3 hahahaha'>3</button>
+
+<script>
+  let triggers = new Set();
+  let lastTrigger;
+
+  boot()
+
+  function boot() {
+    bindEvent();
+  }
+
+  function bindEvent() {
+    document.addEventListener('click', e => {
+      let el = e.target;
+      let content = el.dataset.popout;
+      if (content) {
+        lastTrigger && hide(lastTrigger);
+        lastTrigger = el;
+        show(el, content);
+        triggers.add(el);
+      } else {
+        hideAll();
+      }
+    })
+  }
+
+  function hideAll() {
+    triggers.forEach(btn => {
+      btn._popout.hidden = true;
+    })
+  }
+
+  function show(btn, content) {
+    if (!btn._popout) {
+      let popout = document.createElement('div');
+      popout.classList.add('popout');
+      btn._popout = popout;
+      document.body.appendChild(popout);
+      popout.innerText = content;
+    } else {
+      btn._popout.hidden = false;
+    }
+
+    reposition(btn);
+  }
+
+  function reposition(btn){
+    let p = btn._popout;
+    let btnPosition = btn.getBoundingClientRect();
+    p.style.left = btnPosition.left + 'px';
+    p.style.top = btnPosition.top + btn.offsetHeight + 5 + 'px';
+  }
+
+  function hide(btn) {
+    btn._popout.hidden = true;
+  }
+</script>
