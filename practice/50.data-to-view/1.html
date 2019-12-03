@@ -1,0 +1,115 @@
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+
+  table {
+    border-collapse: collapse;
+    min-width: 400px;
+  }
+
+  th,
+  td {
+    text-align: center;
+    border: 1px solid seagreen;
+    padding: 10px;
+  }
+</style>
+
+<h1>断背山花名册</h1>
+<div class="toolbar">
+  <div class="score-filter">
+    <button data-max='100', data-min = '0'>all</button>
+    <button data-max='100', data-min = '79.9999999999999'>80-100</button>
+    <button data-max='79.99999999999999', data-min = '59.999999999999'>60-80</button>
+    <button data-max='59.99999999999999', data-min = '0'>0-60</button>
+  </div>
+</div>
+<table>
+  <thead>
+    <th>姓名</th>
+    <th>性别</th>
+    <th>分数</th>
+    <th>操作</th>
+  </thead>
+  <tbody id='tbody'>
+
+  </tbody>
+</table>
+
+<script>
+  let list = [
+    {
+      name: '王花花',
+      gender: '男',
+      score: 80,
+    },
+    {
+      name: '李栓蛋',
+      gender: '女',
+      score: 78,
+    },
+    {
+      name: '花花',
+      gender: '男',
+      score: 60,
+    },
+    {
+      name: 'abc',
+      gender: 'man',
+      score : 20
+    },
+    {
+      name: '0',
+      gender: 'null',
+      score: 0,
+    }
+  ];
+
+let tbody = document.querySelector('#tbody'),
+    scoreFilter = document.querySelector('.score-filter');
+boot();
+
+function boot(){
+  render();
+  bindEvent();
+}
+
+function render(boundary){
+  tbody.innerHTML = '';
+
+  list.forEach((user, i)=>{
+    if(boundary){
+      let valid = user.score <= +boundary.max && user.score >= +boundary.min;
+      
+      if(!valid)
+        return;
+    }
+
+    let tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${user.name}</td>
+      <td>${user.gender}</td>
+      <td>${user.score}</td>
+      <td><button class='del'>Delete</button></td>
+    `;
+    tbody.appendChild(tr);
+
+    let delBut = tr.querySelector('.del');
+    delBut.addEventListener('click', ()=>{
+      list.splice(i,1);
+      tr.remove();
+    })
+  })
+}
+
+function bindEvent(){
+  scoreFilter.addEventListener('click', e=>{
+    let el = e.target;
+    let range = el.dataset;
+    if(el.nodeName === 'BUTTON')
+      render(range);
+            
+  })
+}
+</script>
