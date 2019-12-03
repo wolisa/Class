@@ -101,7 +101,7 @@
   //按键隐藏弹出层（keyToHide），默认为ESC键
   //触发弹出层时间（on），默认为点击事件
   let custom = {
-    position: 'top',
+    position: 'left',
   }
 
 //默认配置，会被用户自定义配置覆盖
@@ -179,7 +179,7 @@
 
     if (!position.includes('-')) {
       if (position === 'left' || position === 'right')
-        position += '-centerX';
+        position += '-centerY';
       else if (position === 'top' || position === 'bottom')
         position += '-centerX';
       else position = 'centerX-centerY';
