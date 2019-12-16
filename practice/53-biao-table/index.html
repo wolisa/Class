@@ -1,0 +1,49 @@
+<style>
+  #userTable{
+    padding: 10px;
+    border-collapse: collapse;
+    text-align: center;
+    min-width: 500px;
+  }
+  th,td{
+    border: 1px solid royalblue;
+    padding: 10px;
+  }
+</style>
+<table id="userTable">
+  <thead></thead>
+  <tbody></tbody>
+</table>
+<script src="./2.js"></script>
+<script>
+  let struct = {
+    name: '姓名',
+    gender: '性别',
+    score: '分数',
+    balance: '余额',
+    age: '年龄',
+  };
+
+  let users = [{
+      name: 'whh',
+      gender: 'man',
+      score: 20,
+      balance: 80,
+    },
+    {
+      name: 'lsd',
+      gender: 'women',
+      score: 79,
+      age:18,
+      height:190,
+    },
+    {
+      name: 'zks',
+      gender: 'women',
+      score : 99,
+    }
+  ]
+
+  //form struct users
+  saTable.boot('#userTable',struct,users);
+</script>
