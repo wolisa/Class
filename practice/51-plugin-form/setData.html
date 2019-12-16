@@ -1,0 +1,78 @@
+<style>
+  input {
+    width: 50%;
+  }
+
+  input[type=radio],
+  input[type=checkbox] {
+    width: auto;
+  }
+
+  label {
+    margin: 10px;
+  }
+</style>
+
+<form id="a">
+  <input type="text" name='name' placeholder="姓名" value="1">
+  <input type="number" name='age' placeholder="年龄" value="2">
+  <label>
+  </label>
+  <div>性别
+    <label>
+      自我认知障碍<input type="radio" name='gender' value='???'>
+    </label>
+    <label>
+      男<input type="radio" name='gender' value='010'>
+    </label>
+    <label>
+      女<input type="radio" name='gender' value='sss'>
+    </label>
+  </div>
+  <div>取向(可多选)
+    <label>
+      男<input type="checkbox" name="orientation" value="a010">
+    </label>
+    <label>
+      女<input type="checkbox" name="orientation" value="a000">
+    </label>
+    <label>
+      全都要<input type="checkbox" name="orientation" value="all">
+    </label>
+  </div>
+  <input type="number" name='height' placeholder="身高" value="4">
+  <button type="submit">GO</button>
+</form>
+
+<script>
+  let user = {
+    name: 'aaa',
+    age: 18,
+    gender: 'sss',
+    orientation: ['a000', 'all'],
+    height: 180,
+  }
+  setData(user, a);
+
+  function setData(list, form) {
+    for (let it in list) {
+      let input = form.querySelector(`[name=${it}]`);
+      let val = list[it];
+
+      switch (input.type) {
+        case 'radio':
+          let radio = form.querySelector(`[name=${it}][type=radio][value=${val}`);
+          radio && (radio.checked = true);
+          break;
+        case 'checkbox':
+          val.forEach(i => {
+            let checkbox = form.querySelector(`[name=${it}][value=${i}]`);
+            checkbox && (checkbox.checked = true);
+          })
+        default:
+          input.value = val;
+          break;
+      }
+    }
+  }
+</script>

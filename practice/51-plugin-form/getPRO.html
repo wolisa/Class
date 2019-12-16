@@ -1,0 +1,79 @@
+<style>
+  input {
+    width: 50%;
+  }
+
+  input[type=radio],
+  input[type=checkbox] {
+    width: auto;
+  }
+
+  label {
+    margin: 10px;
+  }
+</style>
+
+<form id="a">
+  <input type="text" name='name' placeholder="姓名" value="1">
+  <input type="number" name='age' placeholder="年龄" value="2">
+  <label>
+  </label>
+  <div>性别
+    <label>
+      自我认知障碍<input type="radio" name='gender' value='???' checked>
+    </label>
+    <label>
+      男<input type="radio" name='gender' value='010' checked>
+    </label>
+    <label>
+      女<input type="radio" name='gender' value='sss' >
+    </label>
+  </div>
+  <div>取向(可多选)
+    <label>
+      男<inp ut type="checkbox" name="orientation" value="010" checked>
+    </label>
+    <label>
+      女<input type="checkbox" name="orientation" value="000" checked>
+    </label>
+    <label>
+      全都要<input type="checkbox" name="orientation" value="all" checked>
+    </label>
+  </div>
+  <input type="number" name='height' placeholder="身高" value="4">
+  <button type="submit">GO</button>
+</form>
+
+<script>
+  function getData(form) {
+    let data = {};
+    let inputs = form.querySelectorAll('[name]');
+
+    inputs.forEach(it => {
+      switch (it.type) {
+        case 'number':
+          data[it.name] = parseFloat(it.value);
+          break;
+        case 'radio':
+          if (!it.checked)
+            return;
+          data[it.name] = it.value;
+          break;
+        case 'checkbox':
+          if(!Array.isArray(data[it.name]))
+            data[it.name] = [];
+          
+          if(it.checked)
+            data[it.name].push(it.value);
+          break;
+        default:
+          data[it.name] = it.value;
+      }
+    })
+    return data;
+  }
+
+let b = getData(a)
+  console.log(b);
+  
+</script>
