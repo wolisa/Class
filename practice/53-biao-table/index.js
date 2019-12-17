@@ -1,39 +1,44 @@
 ;
-(function () {
+(function (){
   'use strict';
-  window.saTable = {boot};
+  window.saTable={boot};
 
-  let table,thead,tbody,structure,list;
+  let table,thead,tbody,struct,list;
 
-  function boot(tableSelector, struct, arr) {
+  function boot(tableSelector,structure,arr){
     table = document.querySelector(tableSelector);
     thead = table.tHead;
     tbody = table.tBodies[0];
-    list  = arr;
-    structure = struct;
+    struct = structure;
+    list = arr;
+
     render();
   }
   function render(){
     renderHead();
     renderBody();
   }
+
   function renderHead(){
     let html = '';
-    for(let key in structure){
-      html += `<th>${structure[key]}</th>`;
+    thead.innerHTML = '';
+
+    for(let key in struct){
+      html += `<th>${struct[key]}</th>`;
     }
-    thead.innerHTML = html;
-  };
+    thead.innerHTML=html;
+  }
+  
   function renderBody(){
     list.forEach(it =>{
       let html = '';
       let tr = document.createElement('tr');
       tbody.appendChild(tr);
-      for(let k in structure){
-        html += `<td>${it[k] || '不便透露'} </td>`
+
+      for(let i in struct){
+        html+= `<td>${it[i] || '-'}</td>`;
       }
       tr.innerHTML = html;
     })
   }
-  
 })();
