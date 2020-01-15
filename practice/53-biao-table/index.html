@@ -9,6 +9,9 @@
     border: 1px solid royalblue;
     padding: 10px;
   }
+  tr.active {
+    background: lightblue;
+  }
 </style>
 <table id="userTable">
   <thead></thead>
@@ -45,5 +48,24 @@
   ]
 
   //form struct users
-  saTable.boot('#userTable',struct,users);
+  saTable.boot('#userTable',struct,users,{
+    Delet(tr,i){
+      console.log(users);
+      users[i] = null;
+      tr.remove();
+    },
+    Delet2:{
+      name: '删除',
+      action: function (tr,i){
+        users[i] = null;
+        tr.remove();
+      }
+    },
+    Highlight:{
+      name:'标记',
+      action: function(tr){
+     let klass =tr.classList;
+      klass.contains('active')? klass.remove('active'): klass.add('active');
+    }}
+  });
 </script>
