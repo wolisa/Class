@@ -1,0 +1,143 @@
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+
+  input,
+  button {
+    border: 1px solid lightblue;
+    width: 100%;
+    padding: .5rem;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+  }
+
+  main {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    padding: .5rem;
+    /* margin-top: 10rem; */
+    position: relative;
+  }
+
+  .form {
+    position: absolute;
+  }
+
+  button {
+    background: black;
+    color: #fff;
+    margin-top: 2rem;
+  }
+
+  button:hover {
+    background: lightblue;
+  }
+  .errorContainer{
+    background: pink;
+    color: red;
+    padding: 5px;
+    font-size: .7rem;
+  }
+  [hidden]{
+    display: none!important;
+  }
+</style>
+<main>
+  <form class="form" novalidate>
+    <h1>注册</h1>
+    <input type="text" name="username" placeholder="username" value="huhu">
+    <input type="email" name="email" placeholder="email" value="785519598@qq.com">
+    <input type="text" name="phone" placeholder="phone" value="18601231994">
+    <input type="password" name="password" placeholder="password" value="1234566">
+    <div class="errorContainer" hidden></div>
+    <button>提交</button>
+  </form>
+</main>
+
+<script src="./index.js"></script>
+<script>
+  let form = document.querySelector('.form');
+  form.style.top = window.innerHeight / 2 - form.offsetHeight / 1.5 + 'px';
+
+  let error = {
+    username: [],
+    password: [],
+    email: [],
+    phone: []
+  };
+
+  let data = {};
+  let errorContainer = form.querySelector('.errorContainer');
+
+
+  boot();
+
+  function boot() {
+    bindEvent();
+  }
+
+  function bindEvent() {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      data.username = form.querySelector('[name=username]').value;
+      data.password = form.querySelector('[name=password]').value;
+      data.email = form.querySelector('[name=email]').value;
+      data.phone = form.querySelector('[name=phone]').value;
+
+      validate() ?
+        hiedError():
+        showError();
+    })
+  }
+
+  function showError() {
+    errorContainer.hidden = false;
+    errorContainer.innerHTML = '';
+    for (let key in error) {
+      let it = error[key];
+      
+      it.forEach(str => {
+        
+        let errorItem = document.createElement('div');
+        errorItem.innerText = str;
+        errorContainer.appendChild(errorItem);
+      });
+    }
+  }
+
+  function hiedError() {
+    errorContainer.hidden = true;
+  }
+
+  function validate() {
+    let valid = true;
+    error = {
+    username: [],
+    password: [],
+    email: [],
+    phone: []
+  };
+
+    if (!vali.isUsername(data.username)) {
+      valid = false;
+      error.username.push('用户名格式错误');
+    }
+    if (!vali.isPassword(data.password)) {
+      valid = false;
+      error.password.push('密码格式错误');
+    }
+    if (!vali.isPhone(data.phone)) {
+      valid = false;
+      error.password.push('手机号格式错误');
+    }
+    if (!vali.isEmail(data.email)) {
+      valid = false;
+      error.email.push('邮箱格式错误');
+    }
+    return valid;
+
+  }
+</script>

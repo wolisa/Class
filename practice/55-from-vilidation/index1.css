@@ -1,0 +1,43 @@
+:root {
+  font-family: sans-serif;
+}
+
+main {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+}
+
+input,
+button {
+  width: 100%;
+  border: 1px solid lightblue;
+  padding: .8rem;
+  margin-bottom: .3rem;
+  font-size: .8rem;
+}
+
+button {
+  background: black;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+button:hover {
+  background: lightblue;
+}
+
+.errorContainer{
+  background: pink;
+  color: #c10;
+  padding: .6rem;
+}
+.error{
+  border: 3px solid red;
+}
+
+[hidden]{
+  display: none !important;
+}
