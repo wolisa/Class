@@ -1,0 +1,48 @@
+<h1>Yoooo</h1>
+<script src="http://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/axios@0.19.2/dist/axios.min.js"></script>
+<script>
+  let url = 'https://api.github.com/search/users?q=wolisa';
+  //XMLHttpRequest
+  let http = new XMLHttpRequest();
+  http.open('get', url);
+  http.send();
+  http.addEventListener('load', () => {
+    let data = JSON.parse(http.responseText);
+    console.log(data);
+
+  })
+
+  // ES6 fetch
+  fetch(url)
+    .then(r => {
+      return r.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+
+  //JQuery
+  $.get(url)
+    .then(r => {
+      console.log(r);
+
+    })
+
+  //JQuery ajax
+  $.ajax({
+      method: 'get',
+      url: url,
+    })
+    .then(r => {
+      console.log(r);
+
+    })
+
+  //axios
+  axios.get(url)
+    .then(r=>{
+      console.log(r);
+      
+    })
+</script>
